@@ -12,48 +12,6 @@
             width: 300px; height: 150px;
         }
 
-      .button {
-          background-color: #F9B514;
-          padding: 5px 10px;
-          border-radius: 4px;
-          cursor: pointer;
-        }
-
-        .modal {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        .modal .bg {
-          width: 100%;
-          height: 100%;
-          background-color: rgba(0, 0, 0, 0.6);
-        }
-
-        .modalBox {
-          position: absolute;
-          background-color: #fff;
-          width: 400px;
-          height: 400px;
-          padding: 15px;
-        }
-
-        .modalBox button {
-          display: block;
-          width: 80px;
-          margin: 0 auto;
-        }
-
-        .hidden {
-          display: none;
-        }
-
 </style>
 <!--[if IE]>
 <script src="excanvas.js"></script>
@@ -61,69 +19,70 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="js/jquery.signature.js"></script>
+<!-- jquery modal -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
-<script>
+<script type="text/javascript">
+   $(document).ready(function(){
+        $('#show').click(function() {
+            $('#thing').show();
+        })
+
+        $('#hide').click(function() {
+            $('#thing').hide();
+        })
+
+
+        var sig = $('#sig').signature().hide();
+
+        $('#showSign').click(function() {
+            $('#sig').show();
+        })
+
+         $('#hideSign').click(function() {
+            $('#sig').hide();
+        })
+
+        $('a[href="#ex7"]').click(function(event) {
+            event.preventDefault();
+
+            $(this).modal({
+            fadeDuration: 250
+             });
+         });
+
+
+    })
 
 </script>
 </head>
 <body>
-<h1>테스트 화면12112 test</h1>
-
-<div id="sig"></div>
-<p style="clear: both;">
-    <button id="disable">Disable</button>
-    <button id="clear">Clear</button>
-</p>
 
 
 <a href="../index/main">사인 페이지로 가기</a>
 
+<br><br>
+
+<button id="show">SHOW</button>
+<button id="hide">HiDE</button>
+<div id="thing" hidden>HI JUNSIK</div>
+
+<br>
+
+<br>
 
 
+<p><a class="btn" href="#ex7">도달창띄우기2</a></p>
+<div id="ex7" class="modal">
+<p>
+    <button id="showSign"> Sign Show </button>
+    <button id="hideSign"> Sign Hide </button>
+    <div id="sig"></div>
+</p>
 
-<button class="openBtn button">모달창 open1</button>
-<div class="modal hidden">
-      <div class="bg"></div>
-          <div class="modalBox">
-                <div id="sig"></div>
-                <p style="clear: both;">
-                    <button id="disable">Disable</button>
-                    <button id="clear">Clear</button>
-                </p>
-
-            <button class="closeBtn">✖</button>
-          </div>
 </div>
 
-
-<script type="text/javascript">
-
-    $(function() {
-    var sig = $('#sig').signature();
-    $('#disable').click(function() {
-        var disable = $(this).text() === 'Disable';
-        $(this).text(disable ? 'Enable' : 'Disable');
-        sig.signature(disable ? 'disable' : 'enable');
-    });
-    $('#clear').click(function() {
-        sig.signature('clear');
-    });
-    });
-
-
-    const open = () => {
-    document.querySelector(".modal").classList.remove("hidden");
-    }
-
-    const close = () => {
-    document.querySelector(".modal").classList.add("hidden");
-    }
-
-    document.querySelector(".openBtn").addEventListener("click", open);
-    document.querySelector(".closeBtn").addEventListener("click", close);
-    document.querySelector(".bg").addEventListener("click", close);
-
-</script>
 
 
 
